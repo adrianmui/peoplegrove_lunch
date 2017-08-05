@@ -3,7 +3,7 @@
 ## Purpose
 i wanna know what's for lunch. slack integration.
 
-node/express/passport/mongo/slack/webpack/react?
+node_/express_/passport/mongo_/slack/webpack/react?
 
 ## Getting Started
 

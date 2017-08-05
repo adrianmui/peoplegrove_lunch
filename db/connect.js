@@ -9,7 +9,7 @@ const db = mongoose.connect(mongoURI).connection;
 db.on('error', console.error.bind(console, `MongoDB connection error`));
 
 db.once('open', () => (
-  console.log(`MongoDB has successfully connection to ${url} \nwelcome: ${username}`)
+  console.log(`MongoDB connection has been opened to ${url} \nwelcome: ${username}`)
 ));
 
 module.exports = db;
