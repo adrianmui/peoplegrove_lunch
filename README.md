@@ -1,16 +1,26 @@
 ## adrian mui, peoplegrove, top sekrit stuff
 
-## Purpose
+## Purpose:
+
 i wanna know what's for lunch. slack integration.
 
 node_/express_/passport/mongo_/slack/webpack/react?
 
-## Getting Started
+## Getting Started:
 
 ```
-  npm install
-  npm build
-  npm start
+  npm install // build
+  
+  npm test // seed database
+
+  npm start // start server with nodemon
+```
+
+## API:
+
+```
+  user
+    GET / -> current user
 ```
 
 ## Schema: user, (food)place, (food)type, opinion, history
@@ -20,6 +30,8 @@ node_/express_/passport/mongo_/slack/webpack/react?
     _id:
     pg_email: string // must have peoplGroveEmail
     google_auth_token: string // passport will handle this
+
+    has_many opinions
 
   place: done
     _id:
@@ -33,15 +45,6 @@ node_/express_/passport/mongo_/slack/webpack/react?
     _id:
     description: string
 
-    > has_many place_type
-
-  place_type: (nonrelational db chosen)
-    _id:
-    type_id: 
-    place_id: 
-
-    > collection
-
   opinion:  done
     _id:
     rating: int
@@ -51,11 +54,11 @@ node_/express_/passport/mongo_/slack/webpack/react?
 
     > belongs_to user
 
-  history:
+
+  history: done
     _id:
     date:
     rating: int
-    comments: [collection]
     place_id:
 
     > belongs_to place

@@ -11,10 +11,6 @@ const placeSchema = mongoose.Schema({
   categories: [{type: DataTypes.ObjectId, ref: 'category'}]
 });
 
-placeSchema.methods = {
-  foo: () => (console.log(`hi my place account is associated with ${email}.`))
-};
-
 const place = mongoose.model('Place', placeSchema);
 
 module.exports = place;

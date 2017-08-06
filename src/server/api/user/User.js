@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.methods = {
-  foo: () => (console.log(`hi my user account is associated with ${email}.`))
+  foo: () => (console.log(`hi my user account is associated with ${this.email}.`))
 }
 
 const User = mongoose.model('User', userSchema);
