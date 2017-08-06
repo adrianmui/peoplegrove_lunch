@@ -3,9 +3,9 @@ const Category = require('./../../src/server/api/category/Category');
 const sampleCategories = [];
 
 for (let i = 0; i < 5; i++) {
-  const description = faker.commerce.color();
+  const name = faker.commerce.color();
   sampleCategories.push({
-    description
+    name
   });
 }
 
