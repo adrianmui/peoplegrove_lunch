@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const DataTypes = mongoose.SchemaTypes;
 
 const categorySchema = mongoose.Schema({
-  description: {
+  name: {
     type: DataTypes.String,
     required: true,
     unique: true

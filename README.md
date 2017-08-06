@@ -16,49 +16,49 @@ node_/express_/passport/mongo_/slack/webpack/react?
 ## Schema: user, (food)place, (food)type, opinion, history
 
 ```
-  user:
+  user: done
     _id:
     pg_email: string // must have peoplGroveEmail
     google_auth_token: string // passport will handle this
 
-  place:
+  place: done
     _id:
+    name:
     types: [collection]
 
     > has_many place_type
     > has_many history
 
-  type:
+  category: done
     _id:
     description: string
 
     > has_many place_type
 
-  place_type:
+  place_type: (nonrelational db chosen)
     _id:
     type_id: 
     place_id: 
 
     > collection
 
-  opinion:
+  opinion:  done
     _id:
     rating: int
     comment: string
     user_id:
-    history_id:
+    place_id:
 
     > belongs_to user
-    > belongs_to history
 
   history:
     _id:
     date:
-    cumulative_rating: float
+    rating: int
+    comments: [collection]
     place_id:
 
     > belongs_to place
-    > has_many opinion
 ```
   
 
