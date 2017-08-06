@@ -1,30 +1,28 @@
+require('dotenv').config(); // .env
+
 const faker = require('faker');
+const logger = require('morgan');
+
 const db = require('./../db/connect');
 const User = require('./../src/server/api/user/User');
+const Category = require('./../src/server/api/category/Category');
 
+const sampleUsers = require('./sample/users');
+const sampleCategories = require('./sample/categories');
 
-const sampleUsers = [
-  {
-    email: `${faker.name.lastName()}.${faker.name.firstName()}@peoplegrove.com`,
-    token: `${faker.random.alphaNumeric(8)}`
-  },
-  {
-    email: `${faker.name.lastName()}.${faker.name.firstName()}@peoplegrove.com`,
-    token: `${faker.random.alphaNumeric(8)}`
-  },
-  {
-    email: `${faker.name.lastName()}.${faker.name.firstName()}@peoplegrove.com`,
-    token: `${faker.random.alphaNumeric(8)}`
-  },r
-  {
-    email: `${faker.name.lastName()}.${faker.name.firstName()}@peoplegrove.com`,
-    token: `${faker.random.alphaNumeric(8)}`
-  },
-  {
-    email: `${faker.name.lastName()}.${faker.name.firstName()}@peoplegrove.com`,
-    token: `${faker.random.alphaNumeric(8)}`
-  }
-];
+const createDoc = (model, doc) => 
+  new Promise((resolve, reject) => 
+    (new model(doc).save((err, saved) => 
+      (err ? reject(err) : resolve(saved))
+    ))
+  );
+  
+const createModel = (arr, model) => {
+  const promises = arr.map(row => createDoc(model, row));
+  return Promise.all(promises)
+    .then(console.log(`...creating ${arr.length} ${model.collection.collectionName}`))
+    .catch(err => console.log`err ${err}`);
+}
 
 db.dropDatabase().then(() => (
   console.log(`########################################`),
@@ -32,7 +30,5 @@ db.dropDatabase().then(() => (
   console.log(`## seed database has been wiped clean ##`),
   console.log(`########################################`),
   console.log(`########################################`),
-  User.insertMany(sampleUsers)
-    .then(users => (console.log(`${users.length}... has been seeded`)))
-    .done(() => db.close())
-));
+  createModel(sampleUsers, User),
+  createModel(sampleCategories, Category)))
