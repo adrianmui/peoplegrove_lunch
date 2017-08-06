@@ -10,7 +10,15 @@ const config = {
     url: process.env.DB_URL,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD
-  }
+  },
+  Google: {
+    consumerKey: process.env.GOOGLE_CONSUMER_KEY,
+    consumerSecret: process.env.GOOGLE_CONSUMER_SECRET
+  },
+  Passport: {
+    secret: process.env.PASSPORT_SECRET
+  },
+  
 }
 
 module.exports = config;

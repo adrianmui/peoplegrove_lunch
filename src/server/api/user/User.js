@@ -7,11 +7,28 @@ const userSchema = mongoose.Schema({
     required: true,
     unique: true
   },
-  token: DataTypes.String
+  admin: {
+    type: DataTypes.Boolean,
+    required: false
+  },
+  token: {
+    type: DataTypes.String,
+    required: true
+  }
 });
 
 userSchema.methods = {
-  foo: () => (console.log(`hi my user account is associated with ${this.email}.`))
+  /** https://stackoverflow.com/questions/40102372/find-one-or-create-with-mongoose */
+  findOrCreate: (condition, doc, callback) => {
+    const self = this;
+    self.findOne(condition, (err, result) => {
+      return result 
+        ? callback(err, result)
+        : self.create(doc, (err, result) => {
+          return callback(err, result);
+        });
+    });
+  }
 }
 
 const User = mongoose.model('User', userSchema);

@@ -1,5 +1,5 @@
 const config = {
-  port: 8081,
+  port: 8081, //heroku friendly
   Slack: {
     app_name: process.env.SLACK_APP_NAME,
     client_id: process.env.SLACK_CLIENT_ID,
@@ -10,7 +10,15 @@ const config = {
     url: process.env.DB_URL,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD
-  }
+  },
+  Google: {
+    consumerKey: process.env.GOOGLE_CONSUMER_KEY,
+    consumerSecret: process.env.GOOGLE_CONSUMER_SECRET
+  },
+  Passport: {
+    secret: process.env.PASSPORT_SECRET
+  },
+   
 }
 
 module.exports = config;

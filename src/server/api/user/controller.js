@@ -8,7 +8,10 @@ module.exports = {
   ),
 
   create: (req, res, next) => (
-    User.create(req.body)
+    User.create({ 
+      ...req.body,
+      token: Common.encrypt(req.body.token)
+      })
       .then(user => res.json(user))
       .catch(err => next(err))
   )
