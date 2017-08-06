@@ -1,15 +1,39 @@
-<!DOCTYPE html>
+<!-- views/index.ejs -->
+<!doctype html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+<head>
+    <title>PeopleGrove</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <style>
+        body { padding-top:80px;}
+        .btn-facebook {
+          color: #f7f7f7;
+          background-color: #4285F4;
+        }
+        .btn-facebook:hover {
+          color:grey;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
 
-    <h4> 
-     
-    </h4>
-  </body>
+    <div class="jumbotron text-center">
+        <h1><span class="fa fa-star"></span> PeopleGrove Lunch</h1>
+
+        <% if (user) { %>
+          <a href="/api/users/<%=user.id%>" class="btn btn-default"><span class="fa fa-user"></span> See Self</a>
+          <a href="/api/tasks/" class="btn btn-default"><span class="fa fa-user"></span> See All Tasks</a>
+          <a href="/spa" class="btn btn-active btn-primary"><span class="fa fa-code"></span> React</a>
+          <a href="/auth/logout" class="btn btn-danger"><span class="fa fa-user"></span> Logout</a>
+        <% } else { %>
+          <p>Login with: </p>
+          <a href="/auth/google" class="btn btn-facebook"><span class="fa fa-google"></span> Login with Google</a>
+        <% } %>
+        
+    </div>
+
+</div>
+</body>
 </html>

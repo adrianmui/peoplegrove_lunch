@@ -7,7 +7,7 @@ auth.isLoggedIn = (req, res, next) => (
   req.isAuthenticated() ? next() : res.redirect('/')
 );
 
-auth.loginRequired = (req, res, next) =>
+auth.loginRedirect = (req, res, next) =>
   (req.user ? res.status(401).send(`status: already logged in`) : next());
 
 auth.loginRequired = (req, res, next) =>

@@ -11,25 +11,32 @@ const userSchema = mongoose.Schema({
     type: DataTypes.Boolean,
     required: false
   },
+  photoUrl: {
+    type: DataTypes.String,
+    default: 'hhttps://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y'
+  },
   token: {
     type: DataTypes.String,
-    required: true
+    required: false
   }
 });
 
-userSchema.methods = {
-  /** https://stackoverflow.com/questions/40102372/find-one-or-create-with-mongoose */
-  findOrCreate: (condition, doc, callback) => {
-    const self = this;
-    self.findOne(condition, (err, result) => {
-      return result 
-        ? callback(err, result)
-        : self.create(doc, (err, result) => {
-          return callback(err, result);
-        });
-    });
-  }
-}
+/** https://stackoverflow.com/questions/40102372/find-one-or-create-with-mongoose */
+userSchema.statics.findOneOrCreate = function findOneOrCreate(condition, callback) {
+  const self = this;
+  return self.findOne(condition)
+    .then(found => {
+      if (found) {
+        console.log(`found: `, found);
+        return found;
+      }
+      self.create(condition)
+        .then(created => console.log(`created: `, created))
+        .catch(err => next(err))
+    })
+};
+
+
 
 const User = mongoose.model('User', userSchema);
 

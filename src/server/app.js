@@ -26,7 +26,7 @@ app.set('view engine', 'ejs');
 require('./middleware')(app);
 
 //passport
-app.use(session(config.Passport)); // session secret
+app.use(session({secret: config.Passport.secret})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // flash messages stored in session
