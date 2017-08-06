@@ -1,39 +1,71 @@
 <!-- views/index.ejs -->
 <!doctype html>
 <html>
-<head>
-    <title>PeopleGrove</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body { padding-top:80px;}
-        .btn-facebook {
-          color: #f7f7f7;
-          background-color: #4285F4;
+  <head>
+      <title>PeopleGrove</title>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+      <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+      <style>
+        body {
+          display: flex;
         }
-        .btn-facebook:hover {
-          color:grey;
+        .container { 
+          margin: 10% 20%;
         }
-    </style>
-</head>
-<body>
-<div class="container">
-
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-star"></span> PeopleGrove Lunch</h1>
-
-        <% if (user) { %>
-          <a href="/api/users/<%=user.id%>" class="btn btn-default"><span class="fa fa-user"></span> See Self</a>
-          <a href="/api/tasks/" class="btn btn-default"><span class="fa fa-user"></span> See All Tasks</a>
-          <a href="/spa" class="btn btn-active btn-primary"><span class="fa fa-code"></span> React</a>
-          <a href="/auth/logout" class="btn btn-danger"><span class="fa fa-user"></span> Logout</a>
-        <% } else { %>
-          <p>Login with: </p>
-          <a href="/auth/google" class="btn btn-facebook"><span class="fa fa-google"></span> Login with Google</a>
-        <% } %>
-        
+      </style>
+  </head>
+  <body>
+    <div id ="nav" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Title</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content"><!-- Your content goes here --></div>
+      </main>
     </div>
 
-</div>
-</body>
+    <div class="container">
+      <div class="mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text"><span class="fa fa-star"></span> PeopleGrove Lunch </h2>
+        </div>
+        
+        <div class="mdl-card__actions">
+          <% if (user) { %>
+            <a href="/api/users/<%=user.id%>" class="mdl-button"><span class="fa fa-user"></span> See Self</a>
+      
+            <a href="/landing" class="mdl-button"><span class="fa fa-code"></span> Control</a>
+            <a href="/auth/logout" class="mdl-button"><span class="fa fa-user"></span> Logout</a>
+          <% } else { %>
+            <p>Login with: </p>
+            <a href="/auth/google" class="mdl-button mdl-js-button mdl-button--primary"><span class="fa fa-google"></span> Login with Google</a>
+          <% } %>
+        </div> 
+      </div>
+    </div>
+  </body>
 </html>

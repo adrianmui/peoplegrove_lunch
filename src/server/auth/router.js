@@ -24,8 +24,8 @@ router.get('/google', passport.authenticate('google', { scope: [
 
 router.get( '/google/callback', 
         passport.authenticate( 'google', { 
-            successRedirect: '/landing',
-            failureRedirect: '/'
+            successRedirect: '/',
+            failureRedirect: '/error'
 }));
 
 router.get('/logout', auth.loginRequired, (req, res, next) => {

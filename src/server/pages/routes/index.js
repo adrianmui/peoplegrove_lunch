@@ -4,7 +4,13 @@ const router = require('express').Router();
 router.get('/', (req, res) => 
   res.render('./index', { user: req.user}));
 
-router.get('/landing', (req, res, next) => 
-  (console.log(req.user),res.render('landing', {})));
+router.get('/landing', (req, res, next) => {
+    console.log(req.user);
+    res.render('spa/landing', {user: req.user})
+  
+
+  
+});
+  
   
 module.exports = router; 

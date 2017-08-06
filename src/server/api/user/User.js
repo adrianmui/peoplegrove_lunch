@@ -21,7 +21,6 @@ const userSchema = mongoose.Schema({
   }
 });
 
-/** https://stackoverflow.com/questions/40102372/find-one-or-create-with-mongoose */
 userSchema.statics.findOneOrCreate = function findOneOrCreate(condition, callback) {
   const self = this;
   return self.findOne(condition)

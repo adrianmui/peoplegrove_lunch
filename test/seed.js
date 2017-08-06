@@ -24,11 +24,13 @@ const createModel = (arr, model) => {
     .catch(err => console.log`err ${err}`);
 }
 
-db.dropDatabase().then(() => (
-  console.log(`########################################`),
-  console.log(`########################################`),
-  console.log(`## seed database has been wiped clean ##`),
-  console.log(`########################################`),
-  console.log(`########################################`),
-  createModel(sampleUsers, User),
-  createModel(sampleCategories, Category)))
+// db.dropDatabase().then(() => (
+//   console.log(`########################################`),
+//   console.log(`########################################`),
+//   console.log(`## seed database has been wiped clean ##`),
+//   console.log(`########################################`),
+//   console.log(`########################################`),
+//   createModel(sampleUsers, User),
+//   createModel(sampleCategories, Category)))
+
+createModel(sampleCategories,Category);
