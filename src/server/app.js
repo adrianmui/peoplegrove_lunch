@@ -4,12 +4,11 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
-const config = require('./../../config/local');
+const config = require('./../../config');
 const redirect = require('./middleware/redirect');
 
 //passport
 const passport = require('passport');
-const config = require('./config/config');
 const auth = require('./auth/auth');
 const flash = require('connect-flash');
 const session = require('express-session');
@@ -27,7 +26,7 @@ app.set('view engine', 'ejs');
 require('./middleware')(app);
 
 //passport
-app.use(session({ secret: process.env.passport.secret })); // session secret
+app.use(session(config.Passport)); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // flash messages stored in session

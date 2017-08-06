@@ -1,15 +1,14 @@
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-const config = require('./../config/config');
+const config = require('./../../../config');
 const init = require('./passport');
 const User = require('./../api/user/User');
 
 init();
 
 passport.use(new GoogleStrategy({
-    consumerKey: process.env.Google.consumerKey,
-    consumerSecret: process.env.Google.consumerSecret,
+    ...config.Google,
     callbackURL: `http://localhost:${config.port}/auth/google/callback`
   },
   (token, tokenSecret, profile, done) => {

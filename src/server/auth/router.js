@@ -8,10 +8,10 @@ const handleResponse = (res, code, statusMsg) => (
   (statusMsg == 'success') ? res.redirect('/') : next(new Error(statusMsg)));
 
 // GET /auth/google
-router.get('/auth/google',
+router.get('/google',
   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 
-router.get('/auth/google/callback', 
+router.get('/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
