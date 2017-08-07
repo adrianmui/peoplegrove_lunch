@@ -12,6 +12,12 @@
         body {
           display: flex;
         }
+        .profile-img img{
+          width: 35px;
+          height: 35px;
+          border-radius: 20px;
+        }
+
         .container { 
           margin: 10% 20%;
         }
@@ -22,27 +28,29 @@
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">Title</span>
+          <span class="mdl-layout-title">PeopleGrove<small>lunch</small></span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link profile-img" 
+              href="/profile">
+              <% if (user) { %>
+                <img src=<%=user.photoUrl%>
+              <% } %>
+            </a>  
           </nav>
         </div>
       </header>
-      <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Title</span>
+      <!-- <div class="mdl-layout__drawer">
+        
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="">Link</a>
           <a class="mdl-navigation__link" href="">Link</a>
           <a class="mdl-navigation__link" href="">Link</a>
           <a class="mdl-navigation__link" href="">Link</a>
         </nav>
-      </div>
+      </div> -->
       <main class="mdl-layout__content">
         <div class="page-content"><!-- Your content goes here --></div>
       </main>
@@ -56,9 +64,10 @@
         
         <div class="mdl-card__actions">
           <% if (user) { %>
-            <a href="/api/users/<%=user.id%>" class="mdl-button"><span class="fa fa-user"></span> See Self</a>
+            <a href="/api/users/<%=user._id%>" class="mdl-button"><i class="material-icons">cloud_off</i> API</a>
       
-            <a href="/landing" class="mdl-button"><span class="fa fa-code"></span> Control</a>
+            <a href="/landing" class="mdl-button">
+              <i class="material-icons">apps</i> Control</a>
             <a href="/auth/logout" class="mdl-button"><span class="fa fa-user"></span> Logout</a>
           <% } else { %>
             <p>Login with: </p>

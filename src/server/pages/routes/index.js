@@ -8,7 +8,9 @@ router.get('/landing', (req, res, next) => {
     console.log(req.user);
     res.render('spa/landing', {user: req.user})
   
-
+router.get('/profile', (req, res, next) => {
+  res.render('user/profiles', {user: req.user})
+})
   
 });
   
