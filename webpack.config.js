@@ -5,15 +5,17 @@ const helpers = require('./config/helpers');
 
 const path = require('path');
 
+const entryPrefix = path.join(__dirname, 'src', 'client')
+
 module.exports = {
   entry: {
-    'polyfills': './src/client/polyfills.ts',
-    'vendor': './src/client/vendor.ts',
-    'main': './src/client/main.ts'
+    'polyfills': entryPrefix + '/polyfills.ts',
+    'vendor': entryPrefix + '/vendor.ts',
+    'main': entryPrefix + '/main.ts'
   },
   output: {
     path: path.join(__dirname, 'public', 'js'),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.ts', '.js']
