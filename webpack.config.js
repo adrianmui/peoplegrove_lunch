@@ -14,7 +14,7 @@ module.exports = {
     'main': entryPrefix + '/main.ts'
   },
   output: {
-    path: path.join(__dirname, 'public', 'js'),
+    path: path.join(__dirname, 'public'),
     filename: '[name].js'
   },
   resolve: {
@@ -25,12 +25,7 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        loaders: [
-          {
-            loader: 'awesome-typescript-loader',
-            options: { configFileName: helpers.root('src', 'tsconfig.json') }
-          } , 'angular2-template-loader'
-        ]
+        loader: 'awesome-typescript-loader'
       },
       {
         test: /\.html$/,
@@ -61,7 +56,7 @@ module.exports = {
     ),
 
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor', 'polyfills']
+      name: ['main', 'vendor', 'polyfills', 'typings.d']
     }),
 
     new HtmlWebpackPlugin({

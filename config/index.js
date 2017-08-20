@@ -6,4 +6,4 @@ const config = {
   production
 };
 
-module.exports = (process.env.NODE_ENV || 'development') ? config[process.env.NODE_ENV] : config.development;
+module.exports = config[process.env.NODE_ENV || 'development'];

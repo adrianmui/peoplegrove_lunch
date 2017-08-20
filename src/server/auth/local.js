@@ -2,7 +2,7 @@ const passport = require('passport');
 // const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-const config = require('./../../../config');
+const config = require('./../../../config/index');
 const init = require('./passport');
 const User = require('./../api/user/User');
 

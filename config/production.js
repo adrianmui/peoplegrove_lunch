@@ -12,8 +12,8 @@ const config = {
     password: process.env.DB_PASSWORD
   },
   Google: {
-    consumerKey: process.env.GOOGLE_CONSUMER_KEY,
-    consumerSecret: process.env.GOOGLE_CONSUMER_SECRET
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET
   },
   Passport: {
     secret: process.env.PASSPORT_SECRET
