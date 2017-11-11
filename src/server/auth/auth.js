@@ -8,16 +8,21 @@ auth.isLoggedIn = (req, res, next) => (
 );
 
 auth.loginRedirect = (req, res, next) =>
-  (req.user ? res.status(401).send(`status: already logged in`) : next());
+  req.user ? res.status(401).send(`status: already logged in`) : next();
 
 auth.loginRequired = (req, res, next) =>
-  (!req.user ? res.status(401).send(`status: please login`) : next());
+  !req.user ? res.status(401).send(`status: please login`) : next();
 
-auth.adminRequired = (req, res, next) => (
-  (!req.user) ? res.status(401).json({status: 'Please log in'}) : 
-  User.findById(req.user.id)
-    .then(user => (!user.admin) ? res.status(401).json({status: 'You are not authorized'}) : next())
-    .catch(err => next(err))
-);
+auth.adminRequired = (req, res, next) =>
+  !req.user
+    ? res.status(401).json({ status: 'Please log in' })
+    : User.findById(req.user.id)
+        .then(
+          user =>
+            !user.admin
+              ? res.status(401).json({ status: 'You are not authorized' })
+              : next()
+        )
+        .catch(err => next(err));
 
 module.exports = auth;

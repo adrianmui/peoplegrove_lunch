@@ -5,45 +5,48 @@ const helpers = require('./config/helpers');
 
 const path = require('path');
 
-const entryPrefix = path.join(__dirname, 'src', 'client')
+const entryPrefix = path.join(__dirname, 'src', 'client-angular');
 
 module.exports = {
   entry: {
-    'polyfills': entryPrefix + '/polyfills.ts',
-    'vendor': entryPrefix + '/vendor.ts',
-    'main': entryPrefix + '/main.ts'
+    polyfills: entryPrefix + '/polyfills.ts',
+    vendor: entryPrefix + '/vendor.ts',
+    main: entryPrefix + '/main.ts',
   },
   output: {
     path: path.join(__dirname, 'public'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
   },
 
   module: {
     rules: [
       {
         test: /\.ts$/,
-        loader: 'awesome-typescript-loader'
+        loader: 'awesome-typescript-loader',
       },
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        loader: 'html-loader',
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file-loader?name=assets/[name].[hash].[ext]'
+        loader: 'file-loader?name=assets/[name].[hash].[ext]',
       },
       {
         test: /\.scss$/,
-        exclude: [path.resolve(__dirname, "node_modules"), path.resolve(__dirname, "/client/*/pages")], 
+        exclude: [
+          path.resolve(__dirname, 'node_modules'),
+          path.resolve(__dirname, '/client/*/pages'),
+        ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader','postcss-loader','sass-loader']
-        })
+          use: ['css-loader', 'postcss-loader', 'sass-loader'],
+        }),
       },
-    ]
+    ],
   },
 
   plugins: [
@@ -51,17 +54,16 @@ module.exports = {
     new webpack.ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core(\\|\/)@angular/,
-      helpers.root('./src/client'), // location of your src
+      helpers.root('./src/client-angular'), // location of your src
       {} // a map of your routes
     ),
 
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['main', 'vendor', 'polyfills', 'typings.d']
+      name: ['main', 'vendor', 'polyfills', 'typings.d'],
     }),
 
     new HtmlWebpackPlugin({
-      template: 'src/client/index.html'
-    })
-  ]
+      template: 'src/client-angular/index.html',
+    }),
+  ],
 };
-
