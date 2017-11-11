@@ -1,10 +1,8 @@
-import { Router } from 'express';
-import { angularRouter, userRouter, reactRouter } from './routes';
-import { loginRequired } from '../auth/auth';
+import angularRouter from './angular';
+import reactRouter from './react';
+import userRouter from './users';
 
-const router = Router();
-
-const cards = [
+const appCards = [
   {
     title: 'Angular',
     subtitle: 'code',
@@ -31,17 +29,4 @@ const cards = [
   },
 ];
 
-router.get('/', (req, res, next) => {
-  console.log(`current user is: ${req.user}`);
-  res.render('index', { user: req.user, cards: cards });
-});
-
-router.get('/profile', loginRequired, (req, res, next) => {
-  res.render('user/profile', { user: req.user });
-});
-
-router.use('/angular', loginRequired, angularRouter);
-router.use('/user', loginRequired, userRouter);
-router.use('/react', loginRequired, userRouter);
-
-export default router;
+export { angularRouter, userRouter, reactRouter, appCards };
